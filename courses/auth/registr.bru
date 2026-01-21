@@ -1,0 +1,22 @@
+meta {
+  name: registr
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{host}}registr
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "danek@danel.com",
+    "password": "danek"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCourseOrderRequest;
-use App\Http\Requests\UpdateCourseOrderRequest;
-use App\Models\CourseOrder;
+use App\Http\Requests\StoreLessonRequest;
+use App\Http\Requests\UpdateLessonRequest;
+use App\Models\Lesson;
 
-class CourseOrderController extends Controller
+class LessonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class CourseOrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCourseOrderRequest $request)
+    public function store(StoreLessonRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class CourseOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CourseOrder $courseOrder)
+    public function show(Lesson $courseLesson)
     {
         //
     }
@@ -43,7 +43,7 @@ class CourseOrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CourseOrder $courseOrder)
+    public function edit(Lesson $courseLesson)
     {
         //
     }
@@ -51,7 +51,7 @@ class CourseOrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCourseOrderRequest $request, CourseOrder $courseOrder)
+    public function update(UpdateLessonRequest $request, Lesson $courseLesson)
     {
         //
     }
@@ -59,7 +59,7 @@ class CourseOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CourseOrder $courseOrder)
+    public function destroy(Lesson $courseLesson)
     {
         //
     }

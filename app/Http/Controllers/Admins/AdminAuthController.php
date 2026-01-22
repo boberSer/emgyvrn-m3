@@ -14,13 +14,22 @@ class AdminAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if (!auth()->user()->role == 'admin') {
+                Auth::logout();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'У вас нет прав администратора'
+                ]);
+            }
 
-            return redirect('admin.courses');
+            $request->session()->regenerate();
+            return redirect('/courses');
+
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+        return response()->json([
+            'success' => false,
+            'email' => 'The provider credentials do not match our records'
         ]);
     }
 }

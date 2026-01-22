@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use App\Models\Lesson;
 
 class CourseController extends Controller
 {
@@ -13,8 +14,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
-        return response()->json($courses);
+        $paginate = 5;
+        $courses = Course::with('lessons')
+        ->paginate($paginate);
+//        $courses = Course::all();
+
+        return view('courses', compact('courses', 'paginate'));
     }
 
     /**
@@ -22,7 +27,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $lessons = Lesson::all();
+        return view('courses', compact('lessons'));
     }
 
     /**
@@ -30,7 +36,13 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        $img = $request->file('img')->store('images', 'public');
+        $course = Course::create([
+           ...$request->validated(),
+            'img' => $img,
+        ]);
+//        dd($course);
+        return view('courses', compact('course'));
     }
 
     /**
@@ -38,9 +50,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        dd($course);
-        Course::all()->with('lesson_id');
-
+        $course->load('course_lessons');
+        return view('courses', compact('course'));
     }
 
     /**
@@ -64,6 +75,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        Course::all()->find($course)->delete();
+        return view('courses');
     }
 }

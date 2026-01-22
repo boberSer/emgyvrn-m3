@@ -20,4 +20,9 @@ class Course extends Model
     protected $hidden = [
         'lessons_id'
     ];
+
+    public function lessons()
+    {
+        return $this->belongsTo(Lesson::class, 'lessons_id');
+    }
 }

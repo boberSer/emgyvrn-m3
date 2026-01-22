@@ -12,10 +12,4 @@ Route::get('/user', function (Request $request) {
 Route::post('/registr', [AuthController::class, 'registr']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::prefix('courses')->group(function () {
-        Route::get('/', [CourseController::class, 'index']);
-        Route::get('/{course_id}', [CourseController::class, 'show']);
-    });
 
-});

@@ -9,3 +9,11 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.pagination-wrapper nav svg {
+    width: 20px; !important; /* Ограничивает размер иконок стрелочек */
+}
+.pagination-wrapper nav div:first-child {
+    display: none; !important; /* Скрывает текстовую информацию "Showing X to Y results" */
+}
+

@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_orders', function (Blueprint $table) {
+        Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
-            $table->foreignId('course_id')->constrained('courses');
+            $table->string('name');
+            $table->string('description');
+            $table->string('video_link');
+            $table->integer('hours');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('course_orders');
+        Schema::dropIfExists('course_lessons');
     }
 };

@@ -29,7 +29,7 @@ class StoreCourseRequest extends FormRequest
             'price' => 'required|integer|min:100',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'lessons_id' => 'required|integer|exists:lessons,id',
+            'lessons_id' => 'integer|exists:lessons,id',
         ];
     }
 }

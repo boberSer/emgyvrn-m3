@@ -14,12 +14,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $paginate = 5;
         $courses = Course::with('lessons')
-        ->paginate($paginate);
+        ->paginate(5);
 //        $courses = Course::all();
 
-        return view('courses', compact('courses', 'paginate'));
+        return view('courses', compact('courses'));
     }
 
     /**
@@ -36,13 +35,15 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
+        $courses = Course::with('lessons')
+            ->paginate(5);
         $img = $request->file('img')->store('images', 'public');
         $course = Course::create([
            ...$request->validated(),
             'img' => $img,
         ]);
 //        dd($course);
-        return view('courses', compact('course'));
+        return view('courses', compact('course', 'courses'));
     }
 
     /**
@@ -70,12 +71,20 @@ class CourseController extends Controller
         //
     }
 
+    public function goToEditPage(Course $course)
+    {
+        $course = Course::with('lessons')->find($course->id);
+        $lessons = Lesson::all();
+        return view('edit-course', compact('course', 'lessons'));
+//        return redirect()->intended("{$course->id}/edit-course")->with('course', $course);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Course $course)
     {
         Course::all()->find($course)->delete();
-        return view('courses');
+        return redirect()->intended('/courses');
     }
 }

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('price');
-            $table->foreignId('lessons_id')->constrained('lessons');
             $table->timestamps();
         });
     }

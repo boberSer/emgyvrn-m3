@@ -14,7 +14,6 @@ class Course extends Model
         'start_date',
         'end_date',
         'price',
-        'lessons_id'
     ];
 
     protected $hidden = [
@@ -23,6 +22,6 @@ class Course extends Model
 
     public function lessons()
     {
-        return $this->belongsTo(Lesson::class, 'lessons_id');
+        return $this->hasMany(Lesson::class, 'course_id');
     }
 }

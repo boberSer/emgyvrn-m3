@@ -19,7 +19,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [CourseController::class, 'index']);
         Route::post('/', [CourseController::class, 'store']);
         Route::get('/{course_id}', [CourseController::class, 'show']);
-        Route::delete('/{course_id}', [CourseController::class, 'destroy']);
+        Route::delete('/{course}', [CourseController::class, 'destroy']);
+
+        Route::get('/{course}/edit-course', [CourseController::class, 'goToEditPage']);
+        Route::post('/{course}/edit-course', [CourseController::class, '']);
     });
 });
 //});

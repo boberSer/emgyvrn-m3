@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('video_link');
             $table->integer('hours');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }
